@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/secondaryColor"
+tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="84dp"
+        android:layout_marginRight="84dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.116"
+        app:srcCompat="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/etUser"
+        style="@android:style/Widget.EditText"
+        android:layout_width="238dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="80dp"
+        android:hint="usuário"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        style="@android:style/Widget.EditText"
+        android:layout_width="238dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+
+        android:hint="senha"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etUser" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="266dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="60dp"
+        android:text="Login"
+        android:textColor="@color/primaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+    <TextView
+        android:id="@+id/labelCadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ainda não é cadastrado?"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        app:layout_constraintRight_toLeftOf="@+id/textCadastrar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="586dp" />
+
+    <TextView
+        android:id="@+id/textCadastrar"
+        style="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar-se"
+        android:textColor="@color/primaryTextColor"
+        app:layout_constraintLeft_toRightOf="@+id/labelCadastro"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
