@@ -1,0 +1,38 @@
+package com.fegusta.abcapacity.adapter
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.RatingBar
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.fegusta.abcapacity.R
+import com.fegusta.abcapacity.model.Quest
+
+class QuestAdapter(var liestaQuest: ArrayList<Quest>) : RecyclerView.Adapter<QuestAdapter.QuestViewHolder>() {
+
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.main_line_view, parent, false)
+
+        return QuestViewHolder(itemView)
+    }
+
+    override fun getItemCount(): Int {
+        return liestaQuest.size
+    }
+
+    override fun onBindViewHolder(holder: QuestViewHolder, position: Int) {
+        val jogo = liestaQuest[position]
+        holder.bind(jogo)
+
+    }
+
+    class QuestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        fun bind(quest: Quest) {
+            itemView.findViewById<TextView>(R.id.textView).text = quest.id.toString()
+        }
+    }
+}
