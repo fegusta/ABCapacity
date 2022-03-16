@@ -1,9 +1,9 @@
 package com.fegusta.abcapacity.model
 
 data class Quest(
-        val id: Int =0,
-        val question: String = "",
-        val alternativaA: String = "",
-        val alternativaB: String = "",
-        val answer: String = ""
+        var id: Int =0,
+        var question: String = "",
+        var alternativaA: String = "",
+        var alternativaB: String = "",
+        var answer: String = ""
 )
