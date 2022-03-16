@@ -3,6 +3,7 @@ package com.fegusta.abcapacity.model
 data class Quest(
         val id: Int,
         val question: String,
-        val listaAlternativa: Array<String>,
+        val alternativaA: String,
+        val alternativaB: String,
         val answer: String
 )

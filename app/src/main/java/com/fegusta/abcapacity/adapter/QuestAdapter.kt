@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fegusta.abcapacity.JogoActivity
 import com.fegusta.abcapacity.R
+import com.fegusta.abcapacity.constants.Constants
 import com.fegusta.abcapacity.model.Quest
 
 class QuestAdapter(var liestaQuest: ArrayList<Quest>) : RecyclerView.Adapter<QuestAdapter.QuestViewHolder>() {
@@ -37,6 +38,12 @@ class QuestAdapter(var liestaQuest: ArrayList<Quest>) : RecyclerView.Adapter<Que
             itemView.findViewById<TextView>(R.id.textView).text = quest.id.toString()
             itemView.findViewById<RelativeLayout>(R.id.main_line_view).setOnClickListener {
                 val intent = Intent(itemView.context,JogoActivity::class.java)
+                intent.putExtra("id", quest.id)
+                intent.putExtra("operacao",Constants.OPERACAO_JOGO)
+                intent.putExtra("question", quest.question)
+                intent.putExtra("alternativaA", quest.alternativaA)
+                intent.putExtra("alternativaB", quest.alternativaB)
+                intent.putExtra("answer", quest.answer)
                 itemView.context.startActivity(intent)
             }
         }
