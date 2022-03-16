@@ -1,11 +1,13 @@
 package com.fegusta.abcapacity.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RatingBar
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.fegusta.abcapacity.JogoActivity
 import com.fegusta.abcapacity.R
 import com.fegusta.abcapacity.model.Quest
 
@@ -33,6 +35,10 @@ class QuestAdapter(var liestaQuest: ArrayList<Quest>) : RecyclerView.Adapter<Que
 
         fun bind(quest: Quest) {
             itemView.findViewById<TextView>(R.id.textView).text = quest.id.toString()
+            itemView.findViewById<RelativeLayout>(R.id.main_line_view).setOnClickListener {
+                val intent = Intent(itemView.context,JogoActivity::class.java)
+                itemView.context.startActivity(intent)
+            }
         }
     }
 }
