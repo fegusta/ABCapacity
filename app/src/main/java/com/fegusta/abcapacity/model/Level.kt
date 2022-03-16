@@ -1,7 +1,7 @@
 package com.fegusta.abcapacity.model
 
 data class Level(
-    val id: Int,
-    val infoLevel: String,
-    val listQuest: ArrayList<Quest>
+    val id: Int = 0,
+    val infoLevel: String = "",
+    val listQuest: ArrayList<Quest> = ArrayList<Quest>()
 )

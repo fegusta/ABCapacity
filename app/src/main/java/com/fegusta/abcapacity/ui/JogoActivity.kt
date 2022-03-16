@@ -26,9 +26,5 @@ class JogoActivity : AppCompatActivity() {
         var buttonLogin = findViewById<Button>(R.id.buttonLogin)
         var progressBarjogo = findViewById<ProgressBar>(R.id.progressBarjogo)
 
-
-
-
-
     }
 }
