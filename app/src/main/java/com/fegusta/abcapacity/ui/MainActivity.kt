@@ -7,7 +7,9 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.fegusta.abcapacity.adapter.LevelAdapter
 import com.fegusta.abcapacity.adapter.QuestAdapter
+import com.fegusta.abcapacity.datasource.LevelDataSouce
 import com.fegusta.abcapacity.datasource.QuestDataSource
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +22,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun iniciarRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view_layour_recycler)
-        recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
-        recyclerView.adapter = QuestAdapter(QuestDataSource.getQuest())
+        recyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+//        recyclerView.adapter = QuestAdapter(QuestDataSource.getQuest())
+        recyclerView.adapter = LevelAdapter(LevelDataSouce.getLevel())
     }
 }

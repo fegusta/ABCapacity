@@ -3,7 +3,11 @@ package com.fegusta.abcapacity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
+import com.fegusta.abcapacity.model.Level
+import com.fegusta.abcapacity.model.Quest
 
 class JogoActivity : AppCompatActivity() {
 
@@ -12,24 +16,19 @@ class JogoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogo)
+        var id = intent.getIntExtra("id",0)
+
+        var question = 0
 
         var textoResposta = findViewById<TextView>(R.id.textoResposta)
         var buttonA = findViewById<Button>(R.id.buttonA)
         var buttonB = findViewById<Button>(R.id.buttonB)
+        var buttonLogin = findViewById<Button>(R.id.buttonLogin)
+        var progressBarjogo = findViewById<ProgressBar>(R.id.progressBarjogo)
 
-        operacao = intent.getStringExtra("operacao")!!
 
-        var textViewPergunta = findViewById<TextView>(R.id.textViewPergunta)
-        textViewPergunta.setText(intent.getStringExtra("question"))
-        buttonA.setText(intent.getStringExtra("alternativaA"))
-        buttonB.setText(intent.getStringExtra("alternativaB"))
 
-        buttonA.setOnClickListener {
-            textoResposta.setText(intent.getStringExtra("alternativaA"))
-        }
 
-        buttonB.setOnClickListener {
-            textoResposta.setText(intent.getStringExtra("alternativaB"))
-        }
+
     }
 }

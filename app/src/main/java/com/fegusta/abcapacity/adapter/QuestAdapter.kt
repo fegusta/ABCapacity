@@ -27,8 +27,8 @@ class QuestAdapter(var liestaQuest: ArrayList<Quest>) : RecyclerView.Adapter<Que
     }
 
     override fun onBindViewHolder(holder: QuestViewHolder, position: Int) {
-        val jogo = liestaQuest[position]
-        holder.bind(jogo)
+        val quest = liestaQuest[position]
+        holder.bind(quest)
 
     }
 
@@ -37,9 +37,9 @@ class QuestAdapter(var liestaQuest: ArrayList<Quest>) : RecyclerView.Adapter<Que
         fun bind(quest: Quest) {
             itemView.findViewById<TextView>(R.id.textView).text = quest.id.toString()
             itemView.findViewById<RelativeLayout>(R.id.main_line_view).setOnClickListener {
-                val intent = Intent(itemView.context,JogoActivity::class.java)
+                val intent = Intent(itemView.context, JogoActivity::class.java)
                 intent.putExtra("id", quest.id)
-                intent.putExtra("operacao",Constants.OPERACAO_JOGO)
+                intent.putExtra("operacao", Constants.OPERACAO_JOGO)
                 intent.putExtra("question", quest.question)
                 intent.putExtra("alternativaA", quest.alternativaA)
                 intent.putExtra("alternativaB", quest.alternativaB)
