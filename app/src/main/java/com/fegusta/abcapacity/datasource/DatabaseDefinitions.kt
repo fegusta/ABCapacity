@@ -27,4 +27,16 @@ class DatabaseDefinitions {
             const val ANSWER = "answer"
         }
     }
+
+    object User {
+
+        const val TABLE_NAME = "tbl_user"
+
+        object Columns {
+            const val ID = "id"
+            const val NOME = "nome"
+            const val EMAIL = "email"
+            const val PASSWORD = "password"
+        }
+    }
 }

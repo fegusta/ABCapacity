@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@color/secondaryColor"
-tools:context=".ui.LoginActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayoutRegister"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/secondaryColor"
+    tools:context=".ui.RegisterActivity">
 
     <ImageView
         android:id="@+id/imageLogo"
@@ -20,11 +21,12 @@ tools:context=".ui.LoginActivity">
         app:layout_constraintVertical_bias="0.116"
         app:srcCompat="@drawable/logo" />
 
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layoutUser"
+        android:id="@+id/tilRegisterName"
         android:layout_width="238dp"
         android:layout_height="wrap_content"
-        android:hint="usuário"
+        android:hint="nome"
         android:textColorHint="@color/primaryColor"
         android:theme="@style/EditTextThemeOverlay"
         app:errorTextAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -35,8 +37,35 @@ tools:context=".ui.LoginActivity">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageLogo" >
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textRegisterName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:textColorHighlight="@color/secondaryTextColor"
+        app:backgroundTint="@color/secondaryColor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRegisterEmail"
+        android:layout_width="238dp"
+        android:layout_height="wrap_content"
+        android:hint="email"
+        android:textColorHint="@color/primaryColor"
+        android:theme="@style/EditTextThemeOverlay"
+        app:errorTextAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:helperTextTextAppearance="@style/HelperTextAppearance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilRegisterName" >
+
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etUser"
+            android:id="@+id/textRegisterEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -49,7 +78,7 @@ tools:context=".ui.LoginActivity">
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layoutPassword"
+        android:id="@+id/tilRegisterPassword"
         android:layout_width="238dp"
         android:layout_height="wrap_content"
         android:hint="senha"
@@ -60,10 +89,37 @@ tools:context=".ui.LoginActivity">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.439"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_layoutUser" >
+        app:layout_constraintTop_toBottomOf="@+id/tilRegisterEmail" >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPassword"
+            android:id="@+id/textRegisterPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:textColorHighlight="@color/secondaryTextColor"
+            app:backgroundTint="@color/secondaryColor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRegisterConfirmPassword"
+        android:layout_width="238dp"
+        android:layout_height="wrap_content"
+        android:hint="confirmar senha"
+        android:textColorHint="@color/primaryColor"
+        android:theme="@style/EditTextThemeOverlay"
+        app:errorTextAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:helperTextTextAppearance="@style/HelperTextAppearance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilRegisterPassword" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textRegisterConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -80,18 +136,18 @@ tools:context=".ui.LoginActivity">
         android:layout_width="266dp"
         android:layout_height="39dp"
         android:layout_marginTop="60dp"
-        android:text="Login"
+        android:text="CADASTRAR"
         android:textColor="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.42"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_layoutPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/tilRegisterConfirmPassword" />
 
     <TextView
         android:id="@+id/labelCadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ainda não é cadastrado?"
+        android:text="Ja é cadastrado?"
         app:layout_constraintTop_toBottomOf="@+id/buttonRegisterUser"
         app:layout_constraintRight_toLeftOf="@+id/textButtonGoToLoginPage"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -103,7 +159,7 @@ tools:context=".ui.LoginActivity">
         style="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cadastrar-se"
+        android:text="Login"
         android:textColor="@color/primaryTextColor"
         app:layout_constraintLeft_toRightOf="@+id/labelCadastro"
         app:layout_constraintRight_toRightOf="parent"

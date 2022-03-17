@@ -13,7 +13,7 @@ import com.fegusta.abcapacity.constants.Constants
 import com.fegusta.abcapacity.model.Level
 import com.fegusta.abcapacity.model.Quest
 
-class LevelAdapter (var liestaLevel: ArrayList<Level>) : RecyclerView.Adapter<LevelAdapter.LevelViewHolder>() {
+class LevelAdapter(var liestaLevel: ArrayList<Level>) : RecyclerView.Adapter<LevelAdapter.LevelViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LevelViewHolder {
             val itemView = LayoutInflater.from(parent.context).inflate(R.layout.main_line_view, parent, false)

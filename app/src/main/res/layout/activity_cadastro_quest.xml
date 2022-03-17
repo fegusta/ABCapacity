@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/secondaryColor"
+    tools:context=".ui.CadastroQuestActivity">
+
+    <include layout="@layout/toolbar"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/MaterialAlertDialog.Material3.Body.Text.CenterStacked"
+        android:id="@+id/tilQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintTextColor="#C82020"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+        <EditText
+            android:id="@+id/editTextQuestion"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Question" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/MaterialAlertDialog.Material3.Body.Text.CenterStacked"
+        android:id="@+id/tilalternativaA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintTextColor="#C82020"
+        app:layout_constraintTop_toBottomOf="@+id/tilQuestion"
+        app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+        <EditText
+            android:id="@+id/editTextAlternativaA"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Alternativa A" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/MaterialAlertDialog.Material3.Body.Text.CenterStacked"
+        android:id="@+id/tilalternativaB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintTextColor="#C82020"
+        app:layout_constraintTop_toBottomOf="@+id/tilalternativaA"
+        app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+        <EditText
+            android:id="@+id/editTextAlternativaB"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Alternativa B" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/MaterialAlertDialog.Material3.Body.Text.CenterStacked"
+        android:id="@+id/tilAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintTextColor="#C82020"
+        app:layout_constraintTop_toBottomOf="@+id/tilalternativaB"
+        app:placeholderTextAppearance="@style/TextAppearance.AppCompat.Large">
+
+        <EditText
+            android:id="@+id/editTextAnswer"
+            style="@style/TextAppearance.Material3.BodySmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Answer" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/buttonRegisterUser"
+        android:layout_width="266dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="8dp"
+        android:text="CADASTRAR"
+        android:textColor="@color/primaryTextColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.84" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

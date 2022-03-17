@@ -11,6 +11,6 @@
         android:layout_width="114dp"
         android:layout_height="47dp"
         android:background="@drawable/logo"
-        android:layout_marginLeft="145dp"/>
+        android:layout_marginLeft="155dp"/>
 
 </androidx.appcompat.widget.Toolbar>

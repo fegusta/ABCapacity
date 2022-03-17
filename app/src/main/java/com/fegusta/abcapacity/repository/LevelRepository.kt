@@ -4,22 +4,20 @@ import android.content.ContentValues
 import android.content.Context
 import com.fegusta.abcapacity.datasource.DatabaseDefinitions
 import com.fegusta.abcapacity.datasource.DatabaseHelper
+import com.fegusta.abcapacity.model.Level
 import com.fegusta.abcapacity.model.Quest
 
-class QuestRepository(context: Context) {
+class LevelRepository(context: Context) {
 
     private val dbHelper = DatabaseHelper(context)
 
-    fun save(quest: Quest) : Int {
+    fun save(level: Level) : Int {
         val db = dbHelper.writableDatabase
 
         val valores = ContentValues()
-        valores.put(DatabaseDefinitions.Quest.Columns.QUESTION, quest.question)
-        valores.put(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A, quest.alternativaA)
-        valores.put(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B, quest.alternativaB)
-        valores.put(DatabaseDefinitions.Quest.Columns.ANSWER, quest.answer)
-
-        val id = db.insert(DatabaseDefinitions.Quest.TABLE_NAME, null, valores)
+        valores.put(DatabaseDefinitions.Level.Columns.INFOLEVEL, level.infoLevel)
+        valores.put(DatabaseDefinitions.Level.Columns.LISTQUEST, level.listQuest)
+        val id = db.insert(DatabaseDefinitions.Level.TABLE_NAME, null, valores)
         return id.toInt()
     }
 
@@ -116,5 +114,9 @@ class QuestRepository(context: Context) {
         }
         return quest
     }
+
+}
+
+private fun ContentValues.put(listquest: String, listQuest: ArrayList<Quest>) {
 
 }

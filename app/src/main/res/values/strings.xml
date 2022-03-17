@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">AB Capacity</string>
+    <string name="preencher_senha">O campo senha deve ser preenchido</string>
+    <string name="preencher_user">O campo usuário deve ser preenchido</string>
+    <string name="register_success_message">Cadastrado com sucesso</string>
+    <string name="error_email_exists">Usuário já cadastrado</string>
+    <string name="error_message_invalid_email">Email inválido</string>
+    <string name="error_message_email">Preencha o email</string>
+    <string name="error_message_name">Preencha o nome completo</string>
+    <string name="error_message_password">Preencha a senha</string>
+    <string name="error_message_password_invalid">Senha inválida</string>
+    <string name="error_password_match">Senhas não conferem</string>
 </resources>
