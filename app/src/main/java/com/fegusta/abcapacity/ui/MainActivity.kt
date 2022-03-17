@@ -18,12 +18,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var floatButton: FloatingActionButton
     private lateinit var recyclerViewLayourRecycler: RecyclerView
 
+    private lateinit var questRepository: QuestRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         initViews()
         initListeners()
+        initObjects()
         initRecyclerView()
     }
 
@@ -37,18 +40,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         floatButton.setOnClickListener(this)
     }
 
+    private fun initObjects() {
+        questRepository = QuestRepository(this)
+    }
+
     private fun initRecyclerView() {
         GridLayoutManager(this,3, RecyclerView.VERTICAL, false).apply {
             recyclerViewLayourRecycler.layoutManager = this
         }
-        val repo = QuestRepository(this)
-        recyclerViewLayourRecycler.adapter = QuestAdapter(repo.getQuests())
+        recyclerViewLayourRecycler.adapter = QuestAdapter(questRepository.getQuests())
     }
 
-    override fun onClick(view: View?) {
-        if(view!!.id == R.id.floatButton){
-            val intent = Intent(this, CadastroQuestActivity::class.java)
-            startActivity(intent)
+    override fun onClick(v: View) {
+        when(v.id) {
+            R.id.floatButton -> {
+                val intent = Intent(this, CadastroQuestActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }

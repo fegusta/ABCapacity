@@ -66,7 +66,7 @@ class QuestRepository(context: Context) {
             DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B,
             DatabaseDefinitions.Quest.Columns.ANSWER)
 
-        val orderBy ="${DatabaseDefinitions.Quest.Columns.QUESTION} ASC"
+        val orderBy ="${DatabaseDefinitions.Quest.Columns.ID} ASC"
 
         val cursor = db.query(DatabaseDefinitions.Quest.TABLE_NAME, projection,
             null,null,null,null,orderBy)

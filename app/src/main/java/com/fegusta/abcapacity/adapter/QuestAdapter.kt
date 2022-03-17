@@ -14,8 +14,6 @@ import com.fegusta.abcapacity.model.Quest
 
 class QuestAdapter(var liestaQuest: ArrayList<Quest>) : RecyclerView.Adapter<QuestAdapter.QuestViewHolder>() {
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.main_line_view, parent, false)
 
@@ -29,7 +27,6 @@ class QuestAdapter(var liestaQuest: ArrayList<Quest>) : RecyclerView.Adapter<Que
     override fun onBindViewHolder(holder: QuestViewHolder, position: Int) {
         val quest = liestaQuest[position]
         holder.bind(quest)
-
     }
 
     class QuestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -1,7 +1,9 @@
 package com.fegusta.abcapacity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -10,53 +12,86 @@ import com.fegusta.abcapacity.model.Level
 import com.fegusta.abcapacity.model.Quest
 import com.fegusta.abcapacity.repository.QuestRepository
 
-class JogoActivity : AppCompatActivity() {
+class JogoActivity : AppCompatActivity(), View.OnClickListener {
+
+    private val activity = this@JogoActivity
 
     private lateinit var operacao: String
+    private var questId: Int = 0
+    private lateinit var resposta: String
+    private lateinit var quest: Quest
+
+
+    private lateinit var textViewPergunta: TextView
+    private lateinit var textoResposta: TextView
+
+    private lateinit var buttonA: Button
+    private lateinit var buttonB: Button
+    private lateinit var buttonResponder: Button
+
+    private lateinit var progressBarjogo: ProgressBar
+
+    private lateinit var questRepository: QuestRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jogo)
-        var id = intent.getIntExtra("id",0)
-        var quest = Quest()
-        val repository = QuestRepository(this)
-        var resposta = ""
+        initViews()
+        initListeners()
+        initObjects()
+        chargeElementsOnLayout()
+    }
 
-        quest = repository.getQuest(id)
+    private fun initViews() {
+        textViewPergunta = findViewById<TextView>(R.id.textViewPergunta)
+        textoResposta = findViewById<TextView>(R.id.textoResposta)
 
-        var question = 0
+        buttonA = findViewById<Button>(R.id.buttonA)
+        buttonB = findViewById<Button>(R.id.buttonB)
+        buttonResponder = findViewById<Button>(R.id.buttonResponder)
 
-        var buttonA = findViewById<Button>(R.id.buttonA)
-        var buttonB = findViewById<Button>(R.id.buttonB)
+        progressBarjogo = findViewById<ProgressBar>(R.id.progressBarjogo)
+    }
 
-        findViewById<TextView>(R.id.textViewPergunta).setText(quest.question)
+    private fun initListeners() {
+        buttonA.setOnClickListener(this)
+        buttonB.setOnClickListener(this)
+        buttonResponder.setOnClickListener(this)
+    }
+
+    private fun initObjects() {
+        questRepository = QuestRepository(activity)
+        resposta = ""
+        questId = intent.getIntExtra("id",0)
+        quest = questRepository.getQuest(questId)
+    }
+
+    private fun chargeElementsOnLayout() {
+        textViewPergunta.setText(quest.question)
         buttonA.setText(quest.alternativaA)
         buttonB.setText(quest.alternativaB)
+    }
 
-        var textoResposta = findViewById<TextView>(R.id.textoResposta)
+    override fun onClick(v: View) {
+        when(v.id){
+            R.id.buttonA -> {
+                textoResposta.setText(questRepository.getQuest(questId).alternativaA)
+                resposta = "a"
+            }
 
-        buttonA.setOnClickListener {
-            textoResposta.setText(quest.alternativaA)
-            resposta = "a"
-        }
+            R.id.buttonB -> {
+                textoResposta.setText(questRepository.getQuest(questId).alternativaB)
+                resposta = "b"
+            }
 
-        buttonB.setOnClickListener {
-            textoResposta.setText(quest.alternativaB)
-            resposta = "b"
-        }
-
-        var progressBarjogo = findViewById<ProgressBar>(R.id.progressBarjogo)
-
-        var buttonResponder = findViewById<Button>(R.id.buttonResponder)
-        buttonResponder.setOnClickListener {
-            if (resposta == quest.answer) {
-                Toast.makeText(this, "CORRETO",Toast.LENGTH_LONG).show()
-                progressBarjogo.progress += 1
-            } else {
-                Toast.makeText(this, "ERRADO",Toast.LENGTH_LONG).show()
+            R.id.buttonResponder -> {
+                if (resposta == quest.answer) {
+                    Toast.makeText(this, "CORRETO",Toast.LENGTH_SHORT).show()
+                    progressBarjogo.progress += 1
+                } else {
+                    Toast.makeText(this, "ERRADO",Toast.LENGTH_SHORT).show()
+                }
             }
         }
-
-
     }
 }
