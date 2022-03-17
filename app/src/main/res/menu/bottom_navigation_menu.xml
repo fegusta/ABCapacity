@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_main"
+        android:enabled="true"
+        android:title="Principal"
+        android:icon="@drawable/ic_baseline_home_24"
+        />
+
+    <item android:id="@+id/menu_profile"
+        android:enabled="true"
+        android:title="Profile"
+        android:icon="@drawable/ic_baseline_person_24"
+        />
+
+    <item android:id="@+id/menu_settings"
+        android:enabled="true"
+        android:title="Configurações"
+        android:icon="@drawable/ic_baseline_settings_24"
+        />
+
+    <item android:id="@+id/menu_add_quest"
+        android:enabled="true"
+        android:title="Adicionar Quest"
+        android:icon="@drawable/ic_baseline_add_24"
+        />
+
+</menu>
