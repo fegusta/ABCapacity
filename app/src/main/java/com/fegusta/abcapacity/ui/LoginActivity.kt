@@ -7,23 +7,34 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.fegusta.abcapacity.helpers.InputValidation
 import com.fegusta.abcapacity.repository.UserRepository
 import com.fegusta.abcapacity.ui.RegisterActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private val activity = this@LoginActivity
 
-    private lateinit var userRepository: UserRepository
+    private lateinit var constraintLayoutRegister: ConstraintLayout
+
     private lateinit var buttonLoginUsuario: Button
-    private lateinit var textCadastrar: TextView
+    private lateinit var textButtonGoToRegisterPage: TextView
+
+    private lateinit var tilLoginUser: TextInputLayout
+    private lateinit var tilLoginPassword: TextInputLayout
+
+    private lateinit var  textLoginUser: TextInputEditText
+    private lateinit var  textLoginPassword: TextInputEditText
+
+    private lateinit var inputValidation: InputValidation
+    private lateinit var userRepository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-        var user = findViewById<TextInputEditText>(R.id.etUser).text
-        var pass = findViewById<TextInputEditText>(R.id.etPassword).text
 
         initViews()
         initListeners()
@@ -32,44 +43,35 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initViews() {
+
+        constraintLayoutRegister = findViewById<ConstraintLayout>(R.id.constraintLayoutLogin)
+
+        tilLoginUser = findViewById<TextInputLayout>(R.id.tilLoginUser)
+        tilLoginPassword = findViewById<TextInputLayout>(R.id.tilLoginPassword)
+
+        textLoginUser = findViewById<TextInputEditText>(R.id.textLoginUser)
+        textLoginPassword = findViewById<TextInputEditText>(R.id.textLoginPassword)
+
         buttonLoginUsuario = findViewById<Button>(R.id.buttonRegisterUser)
-        textCadastrar = findViewById<TextView>(R.id.textButtonGoToLoginPage)
+        textButtonGoToRegisterPage = findViewById<TextView>(R.id.textButtonGoToRegisterPage)
     }
 
     private fun initListeners() {
         buttonLoginUsuario!!.setOnClickListener(this)
-        textCadastrar!!.setOnClickListener(this)
+        textButtonGoToRegisterPage!!.setOnClickListener(this)
     }
 
     private fun initObjects() {
-
         userRepository = UserRepository(activity)
-
-
-    }
-
-
-    private fun validarCampos() : Boolean{
-        var user = findViewById<TextInputEditText>(R.id.etUser)
-        var pass = findViewById<TextInputEditText>(R.id.etPassword)
-        if(user.text.isNullOrEmpty()) {
-            user.setError(getString(R.string.preencher_user))
-            return false
-        }
-        if(pass.text.isNullOrEmpty()) {
-            pass.setError(getString(R.string.preencher_senha))
-            return false
-        }
-        return true
+        inputValidation = InputValidation(activity)
     }
 
     override fun onClick(v: View) {
         when (v.id) {
             R.id.buttonRegisterUser -> {
-                validarCampos()
                 verifyFromSQLite()
             }
-            R.id.textButtonGoToLoginPage -> {
+            R.id.textButtonGoToRegisterPage -> {
                 // Navigate to RegisterActivity
                 val intentRegister = Intent(applicationContext, RegisterActivity::class.java)
                 startActivity(intentRegister)
@@ -79,17 +81,31 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun verifyFromSQLite() {
 
-        if (userRepository.checkUser(findViewById<TextInputEditText>(R.id.etUser)!!.text.toString().trim() , findViewById<TextInputEditText>(R.id.etPassword)!!.text.toString().trim())) {
+        if (!inputValidation!!.isInputEditTextFilled(textLoginUser!!,tilLoginUser!!, getString(R.string.error_message_email))) {
+            return
+        }
+        if (!inputValidation!!.isInputEditTextFilled(textLoginUser!!,tilLoginPassword!!, getString(R.string.error_message_password))) {
+            return
+        }
+        if (!inputValidation!!.isInputEditTextEmail(textLoginUser!!,tilLoginUser!!, getString(R.string.error_message_invalid_email))) {
+            return
+        }
 
+        if (userRepository.checkUser(textLoginUser!!.text.toString().trim() , textLoginPassword!!.text.toString().trim())) {
 
-            Toast.makeText(this,"ENCONTRADO",Toast.LENGTH_SHORT).show()
-
+            val accountsIntent = Intent(activity, MainActivity::class.java)
+            accountsIntent.putExtra("EMAIL", textLoginUser!!.text.toString().trim { it <= ' ' })
+            emptyInputEditText()
+            startActivity(accountsIntent)
 
         } else {
-
             // Snack Bar to show success message that record is wrong
-            Toast.makeText(this,"USUARIO NAO ENCONTRADO",Toast.LENGTH_SHORT).show()
+            Snackbar.make(constraintLayoutRegister!!, getString(R.string.error_valid_email_password), Snackbar.LENGTH_LONG).show()
         }
     }
 
+    private fun emptyInputEditText() {
+        textLoginUser!!.text = null
+        textLoginPassword!!.text = null
+    }
 }

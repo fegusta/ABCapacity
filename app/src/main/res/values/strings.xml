@@ -10,4 +10,5 @@
     <string name="error_message_password">Preencha a senha</string>
     <string name="error_message_password_invalid">Senha inválida</string>
     <string name="error_password_match">Senhas não conferem</string>
+    <string name="error_valid_email_password">Email ou senha inválidos</string>
 </resources>

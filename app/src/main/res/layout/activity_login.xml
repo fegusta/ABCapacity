@@ -4,8 +4,9 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
+android:id="@+id/constraintLayoutLogin"
 android:background="@color/secondaryColor"
-tools:context=".ui.LoginActivity">
+tools:context=".LoginActivity">
 
     <ImageView
         android:id="@+id/imageLogo"
@@ -21,7 +22,7 @@ tools:context=".ui.LoginActivity">
         app:srcCompat="@drawable/logo" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layoutUser"
+        android:id="@+id/tilLoginUser"
         android:layout_width="238dp"
         android:layout_height="wrap_content"
         android:hint="usuário"
@@ -36,7 +37,7 @@ tools:context=".ui.LoginActivity">
         app:layout_constraintTop_toBottomOf="@+id/imageLogo" >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etUser"
+            android:id="@+id/textLoginUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -49,7 +50,7 @@ tools:context=".ui.LoginActivity">
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layoutPassword"
+        android:id="@+id/tilLoginPassword"
         android:layout_width="238dp"
         android:layout_height="wrap_content"
         android:hint="senha"
@@ -60,10 +61,10 @@ tools:context=".ui.LoginActivity">
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.439"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_layoutUser" >
+        app:layout_constraintTop_toBottomOf="@+id/tilLoginUser" >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPassword"
+            android:id="@+id/textLoginPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -80,33 +81,31 @@ tools:context=".ui.LoginActivity">
         android:layout_width="266dp"
         android:layout_height="39dp"
         android:layout_marginTop="60dp"
-        android:text="Login"
         android:textColor="@color/primaryTextColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.42"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_layoutPassword" />
+        android:text="Login"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilLoginPassword" />
 
     <TextView
         android:id="@+id/labelCadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
         android:text="Ainda não é cadastrado?"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRegisterUser"
-        app:layout_constraintRight_toLeftOf="@+id/textButtonGoToLoginPage"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteX="65dp"
-        tools:layout_editor_absoluteY="586dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRegisterUser" />
 
     <TextView
-        android:id="@+id/textButtonGoToLoginPage"
-        style="bold"
+        android:id="@+id/textButtonGoToRegisterPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/secondaryTextColor"
+        style="bold"
         android:text="Cadastrar-se"
-        android:textColor="@color/primaryTextColor"
+        android:layout_marginLeft="10dp"
         app:layout_constraintLeft_toRightOf="@+id/labelCadastro"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonRegisterUser" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
