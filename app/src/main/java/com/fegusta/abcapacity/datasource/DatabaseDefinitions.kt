@@ -11,7 +11,6 @@ class DatabaseDefinitions {
         object Columns {
             const val ID = "id"
             const val INFOLEVEL = "infoLevel"
-            const val LISTQUEST = "listQuest"
         }
     }
 

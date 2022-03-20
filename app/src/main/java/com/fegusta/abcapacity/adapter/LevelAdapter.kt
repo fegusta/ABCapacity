@@ -36,7 +36,6 @@ class LevelAdapter(var liestaLevel: ArrayList<Level>) : RecyclerView.Adapter<Lev
             fun bind(level: Level) {
                 itemView.findViewById<TextView>(R.id.textView).text = level.id.toString()
                 itemView.findViewById<RelativeLayout>(R.id.main_line_view).setOnClickListener {
-                    val listinha = level.listQuest
                     val intent = Intent(itemView.context, JogoActivity::class.java)
                     intent.putExtra("id", level.id)
                     intent.putExtra("operacao", Constants.OPERACAO_JOGO)

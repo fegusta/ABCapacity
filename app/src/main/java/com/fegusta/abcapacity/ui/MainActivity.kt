@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
-import com.fegusta.abcapacity.ui.fragments.AddQuestFragment
-import com.fegusta.abcapacity.ui.fragments.HomeFragment
-import com.fegusta.abcapacity.ui.fragments.ProfileFragment
-import com.fegusta.abcapacity.ui.fragments.SettingsFragment
+import com.fegusta.abcapacity.ui.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -16,6 +13,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private lateinit var profileFragment: ProfileFragment
     private lateinit var settingsFragment: SettingsFragment
     private lateinit var addQuestFragment: AddQuestFragment
+    private lateinit var addLevelFragment: AddLevelFragment
 
     private lateinit var bottomNavigation: BottomNavigationView
 
@@ -31,6 +29,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         profileFragment = ProfileFragment()
         settingsFragment = SettingsFragment()
         addQuestFragment = AddQuestFragment()
+        addLevelFragment = AddLevelFragment()
 
         bottomNavigation = findViewById(R.id.bottom_navigation)
     }
@@ -52,6 +51,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
             R.id.menu_add_quest -> {
                 setFragment(addQuestFragment)
+            }
+            R.id.menu_add_level -> {
+                setFragment(addLevelFragment)
             }
         }
         return true

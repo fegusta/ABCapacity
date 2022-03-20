@@ -16,27 +16,23 @@ class LevelRepository(context: Context) {
 
         val valores = ContentValues()
         valores.put(DatabaseDefinitions.Level.Columns.INFOLEVEL, level.infoLevel)
-        valores.put(DatabaseDefinitions.Level.Columns.LISTQUEST, level.listQuest)
         val id = db.insert(DatabaseDefinitions.Level.TABLE_NAME, null, valores)
         return id.toInt()
     }
 
-    fun update(quest: Quest) : Int {
+    fun update(level: Level) : Int {
         val db = dbHelper.writableDatabase
 
         val valores = ContentValues().apply {
-            put(DatabaseDefinitions.Quest.Columns.QUESTION, quest.question)
-            put(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A, quest.alternativaA)
-            put(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B, quest.alternativaB)
-            put(DatabaseDefinitions.Quest.Columns.ANSWER, quest.answer)
+            put(DatabaseDefinitions.Level.Columns.INFOLEVEL, level.infoLevel)
         }
 
         val selection = "${DatabaseDefinitions.Quest.Columns.ID} = ?"
 
-        val selectionArgs = arrayOf(quest.id.toString())
+        val selectionArgs = arrayOf(level.id.toString())
 
         val count = db.update(
-            DatabaseDefinitions.Quest.TABLE_NAME,
+            DatabaseDefinitions.Level.TABLE_NAME,
             valores,
             selection,
             selectionArgs
@@ -46,47 +42,41 @@ class LevelRepository(context: Context) {
 
     fun delete(id: Int) : Int{
         val db = dbHelper.writableDatabase
-        val selection = "${DatabaseDefinitions.Quest.Columns.ID} = ?"
+        val selection = "${DatabaseDefinitions.Level.Columns.ID} = ?"
 
         val selectionArgs = arrayOf(id.toString())
 
-        val deletedRows = db.delete(DatabaseDefinitions.Quest.TABLE_NAME, selection, selectionArgs)
+        val deletedRows = db.delete(DatabaseDefinitions.Level.TABLE_NAME, selection, selectionArgs)
 
         return deletedRows
     }
 
-    fun getQuests() : ArrayList<Quest>{
+    fun getLevels() : ArrayList<Level>{
         val db = dbHelper.readableDatabase
 
-        val projection = arrayOf(DatabaseDefinitions.Quest.Columns.ID,
-            DatabaseDefinitions.Quest.Columns.QUESTION,
-            DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A,
-            DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B,
-            DatabaseDefinitions.Quest.Columns.ANSWER)
+        val projection = arrayOf(DatabaseDefinitions.Level.Columns.ID,
+            DatabaseDefinitions.Level.Columns.INFOLEVEL)
 
-        val orderBy ="${DatabaseDefinitions.Quest.Columns.QUESTION} ASC"
+        val orderBy ="${DatabaseDefinitions.Level.Columns.ID} ASC"
 
         val cursor = db.query(DatabaseDefinitions.Quest.TABLE_NAME, projection,
             null,null,null,null,orderBy)
 
-        var quests = ArrayList<Quest>()
+        var levels = ArrayList<Level>()
 
         if (cursor != null){
             while (cursor.moveToNext()){
-                var quest = Quest(
-                    id = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ID)),
-                    question = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.QUESTION)),
-                    alternativaA = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A)),
-                    alternativaB = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B)),
-                    answer = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ANSWER))
+                var level = Level(
+                    id = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.Level.Columns.ID)),
+                    infoLevel = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Level.Columns.INFOLEVEL))
                 )
-                quests.add(quest)
+                levels.add(level)
             }
         }
-        return quests
+        return levels
     }
 
-    fun getQuest(id: Int): Quest{
+    fun getLevel(id: Int): Level{
         val db = dbHelper.readableDatabase
 
         val projection = arrayOf(DatabaseDefinitions.Quest.Columns.ID,
@@ -102,17 +92,14 @@ class LevelRepository(context: Context) {
         val cursor = db.query(DatabaseDefinitions.Quest.TABLE_NAME, projection,
             selection,selectionArgs,null,null,null)
 
-        var quest = Quest()
+        var level = Level()
 
         if (cursor != null){
             cursor.moveToNext()
-            quest.id = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ID))
-            quest.question = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.QUESTION))
-            quest.alternativaA = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A))
-            quest.alternativaB = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B))
-            quest.answer = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ANSWER))
+            level.id = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.Level.Columns.ID))
+            level.infoLevel = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Level.Columns.INFOLEVEL))
         }
-        return quest
+        return level
     }
 
 }
