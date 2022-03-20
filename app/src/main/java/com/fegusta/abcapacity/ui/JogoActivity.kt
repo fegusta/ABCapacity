@@ -1,6 +1,5 @@
 package com.fegusta.abcapacity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,7 +7,6 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import com.fegusta.abcapacity.model.Level
 import com.fegusta.abcapacity.model.Quest
 import com.fegusta.abcapacity.repository.QuestRepository
 
