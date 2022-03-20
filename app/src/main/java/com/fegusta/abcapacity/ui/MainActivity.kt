@@ -1,19 +1,13 @@
 package com.fegusta.abcapacity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.fegusta.abcapacity.adapter.QuestAdapter
-import com.fegusta.abcapacity.fragments.AddQuestFragment
-import com.fegusta.abcapacity.fragments.HomeFragment
-import com.fegusta.abcapacity.fragments.ProfileFragment
-import com.fegusta.abcapacity.fragments.SettingsFragment
-import com.fegusta.abcapacity.repository.QuestRepository
-import com.fegusta.abcapacity.ui.CadastroQuestActivity
+import com.fegusta.abcapacity.ui.fragments.AddQuestFragment
+import com.fegusta.abcapacity.ui.fragments.HomeFragment
+import com.fegusta.abcapacity.ui.fragments.ProfileFragment
+import com.fegusta.abcapacity.ui.fragments.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
