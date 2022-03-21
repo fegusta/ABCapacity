@@ -6,10 +6,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.fegusta.abcapacity.helpers.InputValidation
-import com.fegusta.abcapacity.repository.UserRepository
+import com.fegusta.abcapacity.data.repository.UserRepository
 import com.fegusta.abcapacity.ui.RegisterActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText

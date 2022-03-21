@@ -1,4 +1,4 @@
-package com.fegusta.abcapacity.datasource
+package com.fegusta.abcapacity.data.datasource
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

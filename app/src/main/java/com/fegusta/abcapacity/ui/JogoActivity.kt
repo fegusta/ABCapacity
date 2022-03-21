@@ -9,11 +9,9 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.fegusta.abcapacity.model.Level
-import com.fegusta.abcapacity.model.Quest
-import com.fegusta.abcapacity.repository.LevelRepository
-import com.fegusta.abcapacity.repository.QuestRepository
-import com.fegusta.abcapacity.ui.RegisterActivity
+import com.fegusta.abcapacity.data.model.Quest
+import com.fegusta.abcapacity.data.repository.LevelRepository
+import com.fegusta.abcapacity.data.repository.QuestRepository
 
 class JogoActivity : AppCompatActivity(), View.OnClickListener {
 

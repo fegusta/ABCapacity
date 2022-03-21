@@ -9,10 +9,8 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.fegusta.abcapacity.R
-import com.fegusta.abcapacity.model.Level
-import com.fegusta.abcapacity.model.Quest
-import com.fegusta.abcapacity.repository.LevelRepository
-import com.fegusta.abcapacity.repository.QuestRepository
+import com.fegusta.abcapacity.data.model.Level
+import com.fegusta.abcapacity.data.repository.LevelRepository
 import com.google.android.material.textfield.TextInputEditText
 
 class AddLevelFragment : Fragment(), View.OnClickListener  {

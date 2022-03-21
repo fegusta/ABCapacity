@@ -1,11 +1,11 @@
-package com.fegusta.abcapacity.repository
+package com.fegusta.abcapacity.data.repository
 
 import android.content.ContentValues
 import android.content.Context
-import com.fegusta.abcapacity.datasource.DatabaseDefinitions
-import com.fegusta.abcapacity.datasource.DatabaseHelper
-import com.fegusta.abcapacity.model.Level
-import com.fegusta.abcapacity.model.Quest
+import com.fegusta.abcapacity.data.datasource.DatabaseDefinitions
+import com.fegusta.abcapacity.data.datasource.DatabaseHelper
+import com.fegusta.abcapacity.data.model.Level
+import com.fegusta.abcapacity.data.model.Quest
 
 class LevelRepository(context: Context) {
 

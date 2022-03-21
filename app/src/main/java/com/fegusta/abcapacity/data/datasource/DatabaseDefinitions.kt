@@ -1,6 +1,4 @@
-package com.fegusta.abcapacity.datasource
-
-import com.fegusta.abcapacity.model.Quest
+package com.fegusta.abcapacity.data.datasource
 
 class DatabaseDefinitions {
 

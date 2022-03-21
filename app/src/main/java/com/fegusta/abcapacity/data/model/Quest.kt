@@ -1,4 +1,4 @@
-package com.fegusta.abcapacity.model
+package com.fegusta.abcapacity.data.model
 
 data class Quest(
         var id: Int =0,

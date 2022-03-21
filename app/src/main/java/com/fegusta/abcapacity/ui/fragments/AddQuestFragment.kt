@@ -12,12 +12,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.fegusta.abcapacity.R
 import com.fegusta.abcapacity.helpers.InputValidation
-import com.fegusta.abcapacity.model.Level
-import com.fegusta.abcapacity.model.Quest
-import com.fegusta.abcapacity.model.User
-import com.fegusta.abcapacity.repository.LevelRepository
-import com.fegusta.abcapacity.repository.QuestRepository
-import com.google.android.material.snackbar.Snackbar
+import com.fegusta.abcapacity.data.model.Quest
+import com.fegusta.abcapacity.data.repository.LevelRepository
+import com.fegusta.abcapacity.data.repository.QuestRepository
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 

@@ -7,8 +7,8 @@ import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.fegusta.abcapacity.R
 import com.fegusta.abcapacity.helpers.InputValidation
-import com.fegusta.abcapacity.model.User
-import com.fegusta.abcapacity.repository.UserRepository
+import com.fegusta.abcapacity.data.model.User
+import com.fegusta.abcapacity.data.repository.UserRepository
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
