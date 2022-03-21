@@ -20,6 +20,7 @@ class DatabaseDefinitions {
 
         object Columns {
             const val ID = "id"
+            const val LEVEL_ID = "levelId"
             const val QUESTION = "question"
             const val ALTERNATIVA_A = "alternativaA"
             const val ALTERNATIVA_B = "alternativaB"

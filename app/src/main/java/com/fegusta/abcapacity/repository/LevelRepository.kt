@@ -59,7 +59,7 @@ class LevelRepository(context: Context) {
 
         val orderBy ="${DatabaseDefinitions.Level.Columns.ID} ASC"
 
-        val cursor = db.query(DatabaseDefinitions.Quest.TABLE_NAME, projection,
+        val cursor = db.query(DatabaseDefinitions.Level.TABLE_NAME, projection,
             null,null,null,null,orderBy)
 
         var levels = ArrayList<Level>()

@@ -28,10 +28,11 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
 
     companion object {
         private const val DATABASE_NAME = "abcapacity.db"
-        private const val DATABASE_VERSION = 2
+        private const val DATABASE_VERSION = 3
 
         private const val  CREATE_TABLE_QUEST = "CREATE TABLE ${DatabaseDefinitions.Quest.TABLE_NAME} (" +
                 "${DatabaseDefinitions.Quest.Columns.ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "${DatabaseDefinitions.Quest.Columns.LEVEL_ID} INTEGER, " +
                 "${DatabaseDefinitions.Quest.Columns.QUESTION} TEXT, " +
                 "${DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A} TEXT, " +
                 "${DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B} TEXT, " +

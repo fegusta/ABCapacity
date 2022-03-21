@@ -1,5 +1,6 @@
 package com.fegusta.abcapacity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -7,17 +8,21 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.fegusta.abcapacity.model.Level
 import com.fegusta.abcapacity.model.Quest
+import com.fegusta.abcapacity.repository.LevelRepository
 import com.fegusta.abcapacity.repository.QuestRepository
+import com.fegusta.abcapacity.ui.RegisterActivity
 
 class JogoActivity : AppCompatActivity(), View.OnClickListener {
 
     private val activity = this@JogoActivity
 
-    private lateinit var operacao: String
-    private var questId: Int = 0
+    private var levelId: Int = 0
+    private var count: Int = 0
     private lateinit var resposta: String
-    private lateinit var quest: Quest
+    private lateinit var listQuest: ArrayList<Quest>
 
 
     private lateinit var textViewPergunta: TextView
@@ -30,6 +35,7 @@ class JogoActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var progressBarjogo: ProgressBar
 
     private lateinit var questRepository: QuestRepository
+    private lateinit var levelRepository: LevelRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,37 +65,62 @@ class JogoActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initObjects() {
         questRepository = QuestRepository(activity)
+        levelRepository = LevelRepository(activity)
         resposta = ""
-        questId = intent.getIntExtra("id",0)
-        quest = questRepository.getQuest(questId)
+        levelId = intent.getIntExtra("id",0)
+        listQuest = questRepository.getQuestByLevelId(levelId - 1)
+        progressBarjogo.max = listQuest.size
     }
 
     private fun chargeElementsOnLayout() {
-        textViewPergunta.setText(quest.question)
-        buttonA.setText(quest.alternativaA)
-        buttonB.setText(quest.alternativaB)
+        textViewPergunta.setText(listQuest[count].question)
+        buttonA.setText(listQuest[count].alternativaA)
+        buttonB.setText(listQuest[count].alternativaB)
     }
 
     override fun onClick(v: View) {
         when(v.id){
             R.id.buttonA -> {
-                textoResposta.setText(questRepository.getQuest(questId).alternativaA)
+                textoResposta.setText(listQuest[count].alternativaA)
                 resposta = "a"
             }
 
             R.id.buttonB -> {
-                textoResposta.setText(questRepository.getQuest(questId).alternativaB)
+                textoResposta.setText(listQuest[count].alternativaB)
                 resposta = "b"
             }
 
             R.id.buttonResponder -> {
-                if (resposta == quest.answer) {
-                    Toast.makeText(this, "CORRETO",Toast.LENGTH_SHORT).show()
-                    progressBarjogo.progress += 1
+                if (resposta == listQuest[count].answer) {
+                    progressBarjogo.progress++
+                    count++
+                    if (count < listQuest.size) {
+                        toDo()
+                    } else {
+                        val builderDialog = AlertDialog.Builder(v.context)
+                        builderDialog.setTitle("Sucesso!")
+                        builderDialog.setMessage("Lição completada! Parabens!")
+
+                        builderDialog.setPositiveButton("Voltar ao menu") { _, _ ->
+                            val intent = Intent(v.context, MainActivity::class.java)
+                            startActivity(intent)
+                        }
+
+                        builderDialog.show()
+                    }
+
+
                 } else {
                     Toast.makeText(this, "ERRADO",Toast.LENGTH_SHORT).show()
                 }
             }
         }
+    }
+
+    private fun toDo() {
+        textViewPergunta.setText(listQuest[count].question)
+        textoResposta.setText("")
+        buttonA.setText(listQuest[count].alternativaA)
+        buttonB.setText(listQuest[count].alternativaB)
     }
 }

@@ -14,6 +14,7 @@ class QuestRepository(context: Context) {
         val db = dbHelper.writableDatabase
 
         val valores = ContentValues()
+        valores.put(DatabaseDefinitions.Quest.Columns.LEVEL_ID, quest.levelId)
         valores.put(DatabaseDefinitions.Quest.Columns.QUESTION, quest.question)
         valores.put(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A, quest.alternativaA)
         valores.put(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B, quest.alternativaB)
@@ -27,6 +28,7 @@ class QuestRepository(context: Context) {
         val db = dbHelper.writableDatabase
 
         val valores = ContentValues().apply {
+            put(DatabaseDefinitions.Quest.Columns.LEVEL_ID, quest.levelId)
             put(DatabaseDefinitions.Quest.Columns.QUESTION, quest.question)
             put(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A, quest.alternativaA)
             put(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B, quest.alternativaB)
@@ -61,6 +63,7 @@ class QuestRepository(context: Context) {
         val db = dbHelper.readableDatabase
 
         val projection = arrayOf(DatabaseDefinitions.Quest.Columns.ID,
+            DatabaseDefinitions.Quest.Columns.LEVEL_ID,
             DatabaseDefinitions.Quest.Columns.QUESTION,
             DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A,
             DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B,
@@ -77,6 +80,44 @@ class QuestRepository(context: Context) {
             while (cursor.moveToNext()){
                 var quest = Quest(
                     id = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ID)),
+                    levelId = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.LEVEL_ID)),
+                    question = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.QUESTION)),
+                    alternativaA = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A)),
+                    alternativaB = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B)),
+                    answer = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ANSWER))
+                )
+                quests.add(quest)
+            }
+        }
+        return quests
+    }
+
+    fun getQuestByLevelId(levelId: Int): ArrayList<Quest>{
+        val db = dbHelper.readableDatabase
+
+        val projection = arrayOf(DatabaseDefinitions.Quest.Columns.ID,
+            DatabaseDefinitions.Quest.Columns.LEVEL_ID,
+            DatabaseDefinitions.Quest.Columns.QUESTION,
+            DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A,
+            DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B,
+            DatabaseDefinitions.Quest.Columns.ANSWER)
+
+        val orderBy ="${DatabaseDefinitions.Quest.Columns.LEVEL_ID} ASC"
+
+        val selection = "${DatabaseDefinitions.Quest.Columns.LEVEL_ID} = ?"
+
+        val selectionArgs = arrayOf(levelId.toString())
+
+        val cursor = db.query(DatabaseDefinitions.Quest.TABLE_NAME, projection,
+            selection,selectionArgs,null,null,orderBy)
+
+        var quests = ArrayList<Quest>()
+
+        if (cursor != null){
+            while (cursor.moveToNext()){
+                var quest = Quest(
+                    id = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ID)),
+                    levelId = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.LEVEL_ID)),
                     question = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.QUESTION)),
                     alternativaA = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A)),
                     alternativaB = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B)),
@@ -92,6 +133,7 @@ class QuestRepository(context: Context) {
         val db = dbHelper.readableDatabase
 
         val projection = arrayOf(DatabaseDefinitions.Quest.Columns.ID,
+            DatabaseDefinitions.Quest.Columns.LEVEL_ID,
             DatabaseDefinitions.Quest.Columns.QUESTION,
             DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A,
             DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B,
@@ -109,6 +151,7 @@ class QuestRepository(context: Context) {
         if (cursor != null){
             cursor.moveToNext()
             quest.id = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ID))
+            quest.levelId = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.LEVEL_ID))
             quest.question = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.QUESTION))
             quest.alternativaA = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A))
             quest.alternativaB = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B))

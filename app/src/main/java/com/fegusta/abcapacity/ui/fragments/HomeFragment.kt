@@ -8,16 +8,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fegusta.abcapacity.R
+import com.fegusta.abcapacity.adapter.LevelAdapter
 import com.fegusta.abcapacity.adapter.QuestAdapter
+import com.fegusta.abcapacity.model.Level
 import com.fegusta.abcapacity.model.Quest
+import com.fegusta.abcapacity.repository.LevelRepository
 import com.fegusta.abcapacity.repository.QuestRepository
 
 class HomeFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
-    private lateinit var questRepository: QuestRepository
-    private lateinit var quests: ArrayList<Quest>
+    private lateinit var levelRepository: LevelRepository
+    private lateinit var levels: ArrayList<Level>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,14 +38,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun initObjects(view: View) {
-        questRepository = QuestRepository(view.context)
-        quests = questRepository.getQuests()
+        levelRepository = LevelRepository(view.context)
+        levels = levelRepository.getLevels()
     }
 
     private fun initRecyclerView(view: View) {
         GridLayoutManager(view.context,3,RecyclerView.VERTICAL,false).apply {
             recyclerView.layoutManager = this
         }
-        recyclerView.adapter = QuestAdapter(quests)
+        recyclerView.adapter = LevelAdapter(levels)
     }
 }

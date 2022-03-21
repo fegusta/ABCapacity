@@ -107,7 +107,6 @@
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="10"
         android:padding="10dp"
         android:progress="0"
         app:layout_constraintTop_toBottomOf="@+id/buttonResponder"
