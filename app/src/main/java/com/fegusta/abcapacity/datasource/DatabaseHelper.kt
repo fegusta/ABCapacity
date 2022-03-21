@@ -36,16 +36,19 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
                 "${DatabaseDefinitions.Quest.Columns.QUESTION} TEXT, " +
                 "${DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A} TEXT, " +
                 "${DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B} TEXT, " +
-                "${DatabaseDefinitions.Quest.Columns.ANSWER} TEXT);"
+                "${DatabaseDefinitions.Quest.Columns.ANSWER} TEXT, " +
+                "${DatabaseDefinitions.Quest.Columns.TYPE_OF_QUEST} TEXT);"
 
         private const val  CREATE_TABLE_LEVEL = "CREATE TABLE ${DatabaseDefinitions.Level.TABLE_NAME} (" +
                 "${DatabaseDefinitions.Level.Columns.ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "${DatabaseDefinitions.Level.Columns.INFOLEVEL} TEXT);"
+                "${DatabaseDefinitions.Level.Columns.NAME_LEVEL} TEXT " +
+                "${DatabaseDefinitions.Level.Columns.INFO_LEVEL} TEXT);"
 
         private const val  CREATE_TABLE_USER = "CREATE TABLE ${DatabaseDefinitions.User.TABLE_NAME} (" +
                 "${DatabaseDefinitions.User.Columns.ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "${DatabaseDefinitions.User.Columns.NOME} TEXT, " +
                 "${DatabaseDefinitions.User.Columns.EMAIL} TEXT, " +
-                "${DatabaseDefinitions.User.Columns.PASSWORD}  TEXT);"
+                "${DatabaseDefinitions.User.Columns.PASSWORD}  TEXT, " +
+                "${DatabaseDefinitions.User.Columns.USER_LEVEL}  INTEGER);"
     }
 }

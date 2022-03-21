@@ -73,6 +73,7 @@ class JogoActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun chargeElementsOnLayout() {
+        textoResposta.setText("")
         textViewPergunta.setText(listQuest[count].question)
         buttonA.setText(listQuest[count].alternativaA)
         buttonB.setText(listQuest[count].alternativaB)
@@ -95,7 +96,7 @@ class JogoActivity : AppCompatActivity(), View.OnClickListener {
                     progressBarjogo.progress++
                     count++
                     if (count < listQuest.size) {
-                        toDo()
+                        chargeElementsOnLayout()
                     } else {
                         val builderDialog = AlertDialog.Builder(v.context)
                         builderDialog.setTitle("Sucesso!")
@@ -115,12 +116,5 @@ class JogoActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
-    }
-
-    private fun toDo() {
-        textViewPergunta.setText(listQuest[count].question)
-        textoResposta.setText("")
-        buttonA.setText(listQuest[count].alternativaA)
-        buttonB.setText(listQuest[count].alternativaB)
     }
 }

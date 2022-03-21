@@ -6,5 +6,6 @@ data class Quest(
         var question: String = "",
         var alternativaA: String = "",
         var alternativaB: String = "",
-        var answer: String = ""
+        var answer: String = "",
+        var typeOfQuest: String = ""
 )

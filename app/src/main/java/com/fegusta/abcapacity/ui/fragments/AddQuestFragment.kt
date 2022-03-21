@@ -11,11 +11,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.fegusta.abcapacity.R
+import com.fegusta.abcapacity.helpers.InputValidation
 import com.fegusta.abcapacity.model.Level
 import com.fegusta.abcapacity.model.Quest
+import com.fegusta.abcapacity.model.User
 import com.fegusta.abcapacity.repository.LevelRepository
 import com.fegusta.abcapacity.repository.QuestRepository
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 
 class AddQuestFragment : Fragment(), View.OnClickListener {
@@ -27,8 +31,14 @@ class AddQuestFragment : Fragment(), View.OnClickListener {
     private lateinit var editTextAlternativaBFragment: TextInputEditText
     private lateinit var editTextAnswerFragment: TextInputEditText
 
+    private lateinit var tilQuestionFragment: TextInputLayout
+    private lateinit var tilalternativaAFragment: TextInputLayout
+    private lateinit var tilalternativaBFragment: TextInputLayout
+    private lateinit var tilAnswerFragment: TextInputLayout
+
     private lateinit var spinnerAddQuestFragment: Spinner
 
+    private lateinit var inputValidation: InputValidation
     private lateinit var questRepository: QuestRepository
     private lateinit var levelRepository: LevelRepository
 
@@ -52,6 +62,11 @@ class AddQuestFragment : Fragment(), View.OnClickListener {
         editTextAlternativaBFragment = view.findViewById<TextInputEditText>(R.id.editTextAlternativaBFragment)
         editTextAnswerFragment = view.findViewById<TextInputEditText>(R.id.editTextAnswerFragment)
 
+        tilQuestionFragment = view.findViewById<TextInputLayout>(R.id.tilQuestionFragment)
+        tilalternativaAFragment = view.findViewById<TextInputLayout>(R.id.tilalternativaAFragment)
+        tilalternativaBFragment = view.findViewById<TextInputLayout>(R.id.tilalternativaBFragment)
+        tilAnswerFragment = view.findViewById<TextInputLayout>(R.id.tilAnswerFragment)
+
         spinnerAddQuestFragment = view.findViewById<Spinner>(R.id.spinnerAddQuestFragment)
     }
 
@@ -62,6 +77,7 @@ class AddQuestFragment : Fragment(), View.OnClickListener {
     private fun initObjects(view: View) {
         questRepository = QuestRepository(view.context)
         levelRepository = LevelRepository(view.context)
+        inputValidation = InputValidation(view.context)
     }
 
     private fun initSpinner(view: View) {
@@ -77,9 +93,26 @@ class AddQuestFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View) {
         when (view.id) {
             R.id.buttonRegisterQuest -> {
-                salvarQuest(view)
+                postDataToSQLite(view)
+
             }
         }
+    }
+
+    private fun postDataToSQLite(view: View) {
+        if(!inputValidation!!.isInputEditTextEmail(editTextQuestionFragment,tilQuestionFragment,"preencha o campo questão")){
+            return
+        }
+        if(!inputValidation!!.isInputEditTextEmail(editTextAlternativaAFragment,tilalternativaAFragment,"preencha o campo alternativa A")){
+            return
+        }
+        if(!inputValidation!!.isInputEditTextEmail(editTextAlternativaBFragment,tilalternativaBFragment,"preencha o campo alternativa B")){
+            return
+        }
+        if(!inputValidation!!.isInputEditTextEmail(editTextAnswerFragment,tilAnswerFragment,"preencha o campo resposta")){
+            return
+        }
+        salvarQuest(view)
     }
 
     private fun salvarQuest(view: View) {

@@ -4,5 +4,7 @@ class Constants {
 
     companion object {
         const val OPERACAO_JOGO = "Novo Jogo"
+
+        const val TYPE_QUEST = "escolha"
     }
 }

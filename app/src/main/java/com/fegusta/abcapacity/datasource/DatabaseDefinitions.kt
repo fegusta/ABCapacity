@@ -10,7 +10,8 @@ class DatabaseDefinitions {
 
         object Columns {
             const val ID = "id"
-            const val INFOLEVEL = "infoLevel"
+            const val NAME_LEVEL = "nameLevel"
+            const val INFO_LEVEL = "infoLevel"
         }
     }
 
@@ -25,6 +26,7 @@ class DatabaseDefinitions {
             const val ALTERNATIVA_A = "alternativaA"
             const val ALTERNATIVA_B = "alternativaB"
             const val ANSWER = "answer"
+            const val TYPE_OF_QUEST = "typeOfQuest"
         }
     }
 
@@ -37,6 +39,7 @@ class DatabaseDefinitions {
             const val NOME = "nome"
             const val EMAIL = "email"
             const val PASSWORD = "password"
+            const val USER_LEVEL = "userLever"
         }
     }
 }

@@ -17,6 +17,7 @@ class UserRepository(context: Context) {
         valores.put(DatabaseDefinitions.User.Columns.NOME, user.name)
         valores.put(DatabaseDefinitions.User.Columns.EMAIL, user.email)
         valores.put(DatabaseDefinitions.User.Columns.PASSWORD, user.password)
+        valores.put(DatabaseDefinitions.User.Columns.USER_LEVEL, 1)
 
         val id = db.insert(DatabaseDefinitions.User.TABLE_NAME, null, valores)
         db.close()
@@ -30,6 +31,7 @@ class UserRepository(context: Context) {
             put(DatabaseDefinitions.User.Columns.NOME, user.name)
             put(DatabaseDefinitions.User.Columns.EMAIL, user.email)
             put(DatabaseDefinitions.User.Columns.PASSWORD, user.password)
+            put(DatabaseDefinitions.User.Columns.USER_LEVEL, user.userLevel)
         }
 
         val selection = "${DatabaseDefinitions.Quest.Columns.ID} = ?"
@@ -63,7 +65,8 @@ class UserRepository(context: Context) {
             DatabaseDefinitions.User.Columns.ID,
             DatabaseDefinitions.User.Columns.NOME,
             DatabaseDefinitions.User.Columns.EMAIL,
-            DatabaseDefinitions.User.Columns.PASSWORD)
+            DatabaseDefinitions.User.Columns.PASSWORD,
+            DatabaseDefinitions.User.Columns.USER_LEVEL)
 
         val orderBy ="${DatabaseDefinitions.User.Columns.NOME} ASC"
 
@@ -79,7 +82,8 @@ class UserRepository(context: Context) {
                     id = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.User.Columns.ID)),
                     name = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.User.Columns.NOME)),
                     email = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.User.Columns.EMAIL)),
-                    password = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.User.Columns.PASSWORD))
+                    password = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.User.Columns.PASSWORD)),
+                    userLevel = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.User.Columns.USER_LEVEL))
                 )
                 users.add(user)
             }
@@ -94,7 +98,8 @@ class UserRepository(context: Context) {
             DatabaseDefinitions.User.Columns.ID,
             DatabaseDefinitions.User.Columns.NOME,
             DatabaseDefinitions.User.Columns.EMAIL,
-            DatabaseDefinitions.User.Columns.PASSWORD)
+            DatabaseDefinitions.User.Columns.PASSWORD,
+            DatabaseDefinitions.User.Columns.USER_LEVEL)
 
         val selection = "${DatabaseDefinitions.User.Columns.ID} = ?"
 
@@ -112,6 +117,7 @@ class UserRepository(context: Context) {
             user.name = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.User.Columns.NOME))
             user.email = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.User.Columns.EMAIL))
             user.password = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.User.Columns.PASSWORD))
+            user.userLevel = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.User.Columns.USER_LEVEL))
         }
         return user
     }
@@ -170,7 +176,7 @@ class UserRepository(context: Context) {
 
         // query user table with conditions
         /**
-         * Here query function is used to fetch records from user table this function works like we use sql query.
+         * Here query function is used to fetch records from user table this function works like we use sql  query.
          * SQL query equivalent to this query function is
          * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com' AND user_password = 'qwerty';
          */

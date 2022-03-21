@@ -15,7 +15,8 @@ class LevelRepository(context: Context) {
         val db = dbHelper.writableDatabase
 
         val valores = ContentValues()
-        valores.put(DatabaseDefinitions.Level.Columns.INFOLEVEL, level.infoLevel)
+        valores.put(DatabaseDefinitions.Level.Columns.NAME_LEVEL, level.nameLevel)
+        valores.put(DatabaseDefinitions.Level.Columns.INFO_LEVEL, level.infoLevel)
         val id = db.insert(DatabaseDefinitions.Level.TABLE_NAME, null, valores)
         return id.toInt()
     }
@@ -24,7 +25,8 @@ class LevelRepository(context: Context) {
         val db = dbHelper.writableDatabase
 
         val valores = ContentValues().apply {
-            put(DatabaseDefinitions.Level.Columns.INFOLEVEL, level.infoLevel)
+            put(DatabaseDefinitions.Level.Columns.NAME_LEVEL, level.nameLevel)
+            put(DatabaseDefinitions.Level.Columns.INFO_LEVEL, level.infoLevel)
         }
 
         val selection = "${DatabaseDefinitions.Quest.Columns.ID} = ?"
@@ -55,7 +57,7 @@ class LevelRepository(context: Context) {
         val db = dbHelper.readableDatabase
 
         val projection = arrayOf(DatabaseDefinitions.Level.Columns.ID,
-            DatabaseDefinitions.Level.Columns.INFOLEVEL)
+            DatabaseDefinitions.Level.Columns.INFO_LEVEL)
 
         val orderBy ="${DatabaseDefinitions.Level.Columns.ID} ASC"
 
@@ -68,7 +70,8 @@ class LevelRepository(context: Context) {
             while (cursor.moveToNext()){
                 var level = Level(
                     id = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.Level.Columns.ID)),
-                    infoLevel = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Level.Columns.INFOLEVEL))
+                    nameLevel = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Level.Columns.NAME_LEVEL)),
+                    infoLevel = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Level.Columns.INFO_LEVEL))
                 )
                 levels.add(level)
             }
@@ -79,17 +82,15 @@ class LevelRepository(context: Context) {
     fun getLevel(id: Int): Level{
         val db = dbHelper.readableDatabase
 
-        val projection = arrayOf(DatabaseDefinitions.Quest.Columns.ID,
-            DatabaseDefinitions.Quest.Columns.QUESTION,
-            DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A,
-            DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B,
-            DatabaseDefinitions.Quest.Columns.ANSWER)
+        val projection = arrayOf(DatabaseDefinitions.Level.Columns.ID,
+            DatabaseDefinitions.Level.Columns.NAME_LEVEL,
+            DatabaseDefinitions.Level.Columns.INFO_LEVEL)
 
         val selection = "${DatabaseDefinitions.Quest.Columns.ID} = ?"
 
         val selectionArgs = arrayOf(id.toString())
 
-        val cursor = db.query(DatabaseDefinitions.Quest.TABLE_NAME, projection,
+        val cursor = db.query(DatabaseDefinitions.Level.TABLE_NAME, projection,
             selection,selectionArgs,null,null,null)
 
         var level = Level()
@@ -97,7 +98,8 @@ class LevelRepository(context: Context) {
         if (cursor != null){
             cursor.moveToNext()
             level.id = cursor.getInt(cursor.getColumnIndex(DatabaseDefinitions.Level.Columns.ID))
-            level.infoLevel = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Level.Columns.INFOLEVEL))
+            level.nameLevel = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Level.Columns.NAME_LEVEL))
+            level.infoLevel = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Level.Columns.INFO_LEVEL))
         }
         return level
     }

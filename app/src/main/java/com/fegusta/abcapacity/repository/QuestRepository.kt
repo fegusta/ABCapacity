@@ -19,6 +19,7 @@ class QuestRepository(context: Context) {
         valores.put(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A, quest.alternativaA)
         valores.put(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B, quest.alternativaB)
         valores.put(DatabaseDefinitions.Quest.Columns.ANSWER, quest.answer)
+        valores.put(DatabaseDefinitions.Quest.Columns.TYPE_OF_QUEST, quest.typeOfQuest)
 
         val id = db.insert(DatabaseDefinitions.Quest.TABLE_NAME, null, valores)
         return id.toInt()
@@ -33,6 +34,7 @@ class QuestRepository(context: Context) {
             put(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A, quest.alternativaA)
             put(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B, quest.alternativaB)
             put(DatabaseDefinitions.Quest.Columns.ANSWER, quest.answer)
+            put(DatabaseDefinitions.Quest.Columns.TYPE_OF_QUEST, quest.typeOfQuest)
         }
 
         val selection = "${DatabaseDefinitions.Quest.Columns.ID} = ?"
@@ -67,7 +69,8 @@ class QuestRepository(context: Context) {
             DatabaseDefinitions.Quest.Columns.QUESTION,
             DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A,
             DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B,
-            DatabaseDefinitions.Quest.Columns.ANSWER)
+            DatabaseDefinitions.Quest.Columns.ANSWER,
+            DatabaseDefinitions.Quest.Columns.TYPE_OF_QUEST)
 
         val orderBy ="${DatabaseDefinitions.Quest.Columns.ID} ASC"
 
@@ -84,7 +87,8 @@ class QuestRepository(context: Context) {
                     question = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.QUESTION)),
                     alternativaA = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A)),
                     alternativaB = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B)),
-                    answer = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ANSWER))
+                    answer = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ANSWER)),
+                    typeOfQuest = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.TYPE_OF_QUEST))
                 )
                 quests.add(quest)
             }
@@ -100,7 +104,8 @@ class QuestRepository(context: Context) {
             DatabaseDefinitions.Quest.Columns.QUESTION,
             DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A,
             DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B,
-            DatabaseDefinitions.Quest.Columns.ANSWER)
+            DatabaseDefinitions.Quest.Columns.ANSWER,
+            DatabaseDefinitions.Quest.Columns.TYPE_OF_QUEST)
 
         val orderBy ="${DatabaseDefinitions.Quest.Columns.LEVEL_ID} ASC"
 
@@ -121,7 +126,8 @@ class QuestRepository(context: Context) {
                     question = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.QUESTION)),
                     alternativaA = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A)),
                     alternativaB = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B)),
-                    answer = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ANSWER))
+                    answer = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ANSWER)),
+                    typeOfQuest = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.TYPE_OF_QUEST))
                 )
                 quests.add(quest)
             }
@@ -137,7 +143,8 @@ class QuestRepository(context: Context) {
             DatabaseDefinitions.Quest.Columns.QUESTION,
             DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A,
             DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B,
-            DatabaseDefinitions.Quest.Columns.ANSWER)
+            DatabaseDefinitions.Quest.Columns.ANSWER,
+            DatabaseDefinitions.Quest.Columns.TYPE_OF_QUEST)
 
         val selection = "${DatabaseDefinitions.Quest.Columns.ID} = ?"
 
@@ -156,6 +163,7 @@ class QuestRepository(context: Context) {
             quest.alternativaA = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_A))
             quest.alternativaB = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ALTERNATIVA_B))
             quest.answer = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.ANSWER))
+            quest.typeOfQuest = cursor.getString(cursor.getColumnIndex(DatabaseDefinitions.Quest.Columns.TYPE_OF_QUEST))
         }
         return quest
     }
