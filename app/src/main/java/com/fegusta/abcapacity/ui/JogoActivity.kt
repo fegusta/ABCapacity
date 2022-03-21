@@ -70,6 +70,7 @@ class JogoActivity : AppCompatActivity(), View.OnClickListener {
         levelId = intent.getIntExtra("id",0)
         listQuest = questRepository.getQuestByLevelId(levelId - 1)
         progressBarjogo.max = listQuest.size
+        progressBarjogo.setBackgroundColor(R.color.primaryColor.toInt())
     }
 
     private fun chargeElementsOnLayout() {

@@ -33,7 +33,6 @@ class AddQuestFragment : Fragment(), View.OnClickListener {
     private lateinit var tilQuestionFragment: TextInputLayout
     private lateinit var tilalternativaAFragment: TextInputLayout
     private lateinit var tilalternativaBFragment: TextInputLayout
-    private lateinit var tilAnswerFragment: TextInputLayout
 
     private lateinit var spinnerAddQuestFragment: Spinner
     private lateinit var spinnerTypeOfQuestFragment: Spinner

@@ -9,28 +9,25 @@
 
     <include layout="@layout/toolbar"/>
 
-    <Button
-        android:id="@+id/buttonResponder"
-        android:layout_width="266dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="8dp"
-        android:text="RESPONDER"
-        android:textColor="@color/primaryTextColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.84" />
+    <TextView
+    android:id="@+id/textViewPergunta"
+    android:layout_width="272dp"
+    android:layout_height="150dp"
+    android:text="Pergunda texto da pergunta aqui por aqui a pergunta"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.496"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.218" />
 
     <ImageView
         android:id="@+id/enunciado"
         android:layout_width="100dp"
         android:layout_height="92dp"
         android:layout_marginLeft="68dp"
-        android:layout_marginTop="204dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPergunta"
         app:srcCompat="@drawable/btu" />
 
     <TextView
@@ -39,18 +36,17 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintLeft_toRightOf="@+id/enunciado"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPergunta" />
 
     <ImageView
         android:id="@+id/imageFimEnunciado1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="208dp"
         app:layout_constraintLeft_toRightOf="@+id/textoResposta"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPergunta"
         app:srcCompat="@drawable/ic_baseline_label_primary" />
 
     <ImageView
@@ -64,47 +60,46 @@
 
     <Button
         android:id="@+id/buttonA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
         android:layout_marginLeft="72dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginTop="4dp"
         android:text="Button A"
         app:backgroundTint="#C4C4C4"
-        app:layout_constraintBottom_toTopOf="@+id/buttonResponder"
-        app:layout_constraintEnd_toStartOf="@+id/buttonB"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enunciado" />
 
     <Button
         android:id="@+id/buttonB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginBottom="120dp"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginRight="72dp"
         android:text="Button B"
         app:backgroundTint="#C4C4C4"
-        app:layout_constraintBottom_toTopOf="@+id/buttonResponder"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/buttonA"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enunciado" />
 
-    <TextView
-        android:id="@+id/textViewPergunta"
-        android:layout_width="272dp"
-        android:layout_height="57dp"
-        android:text="Pergunda texto da pergunta aqui por aqui a pergunta"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/buttonResponder"
+        android:layout_width="266dp"
+        android:layout_height="39dp"
+        android:text="RESPONDER"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintTop_toBottomOf="@+id/buttonA"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintVertical_bias="0.84" />
 
     <ProgressBar
         android:id="@+id/progressBarjogo"
-        style="@android:style/Widget.ProgressBar.Horizontal"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
