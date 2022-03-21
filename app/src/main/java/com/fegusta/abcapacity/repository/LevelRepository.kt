@@ -57,6 +57,7 @@ class LevelRepository(context: Context) {
         val db = dbHelper.readableDatabase
 
         val projection = arrayOf(DatabaseDefinitions.Level.Columns.ID,
+            DatabaseDefinitions.Level.Columns.NAME_LEVEL,
             DatabaseDefinitions.Level.Columns.INFO_LEVEL)
 
         val orderBy ="${DatabaseDefinitions.Level.Columns.ID} ASC"

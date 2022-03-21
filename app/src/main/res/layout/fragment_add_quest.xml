@@ -7,8 +7,6 @@
     android:background="@color/secondaryColor"
     tools:context=".ui.fragments.AddQuestFragment">
 
-    <include layout="@layout/toolbar"/>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilQuestionFragment"
@@ -94,33 +92,44 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tilAnswerFragment"
-        android:layout_width="238dp"
+    <Spinner
+        android:id="@+id/spinnerAnswerFragment"
+        android:layout_width="266dp"
         android:layout_height="wrap_content"
-        android:hint="resposta"
-        android:textColorHint="@color/primaryColor"
-        android:theme="@style/EditTextThemeOverlay"
-        app:errorTextAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:helperTextTextAppearance="@style/HelperTextAppearance"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.439"
+        android:dropDownSelector="@color/primaryColor"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilalternativaBFragment" >
+        app:layout_constraintTop_toBottomOf="@+id/tilalternativaBFragment" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextAnswerFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:paddingStart="20dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="20dp"
-            android:textColorHighlight="@color/secondaryTextColor"
-            app:backgroundTint="@color/secondaryColor" />
+    <Spinner
+        android:id="@+id/spinnerAddQuestFragment"
+        android:layout_width="266dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:dropDownSelector="@color/primaryColor"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAnswerFragment" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+    <Spinner
+        android:id="@+id/spinnerTypeOfQuestFragment"
+        android:layout_width="266dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:dropDownSelector="@color/primaryColor"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAddQuestFragment" />
 
     <Button
         android:id="@+id/buttonRegisterQuest"
@@ -128,22 +137,9 @@
         android:layout_height="39dp"
         android:text="CADASTRAR"
         android:textColor="@color/primaryTextColor"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="35dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAddQuestFragment"/>
-
-    <Spinner
-        android:id="@+id/spinnerAddQuestFragment"
-        android:layout_width="266dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:dropDownSelector="@color/primaryColor"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tilAnswerFragment" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerTypeOfQuestFragment"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

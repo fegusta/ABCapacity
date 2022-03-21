@@ -14,8 +14,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string-array name="lista_peso">
-        <item>kg</item>
-        <item>lb</item>
+    <string-array name="list_answer">
+        <item>a</item>
+        <item>b</item>
+    </string-array>
+
+    <string-array name="list_type_of_quest">
+        <item>escolha</item>
+        <item>interacao</item>
     </string-array>
 </resources>

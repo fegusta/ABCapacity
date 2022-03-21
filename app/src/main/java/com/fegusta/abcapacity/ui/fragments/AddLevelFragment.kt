@@ -20,6 +20,7 @@ class AddLevelFragment : Fragment(), View.OnClickListener  {
     private lateinit var buttonRegisterLevel: Button
 
     private lateinit var editTextInfoLevelFragment: TextInputEditText
+    private lateinit var editTextNameLevelFragment: TextInputEditText
 
     private lateinit var levelRepository: LevelRepository
 
@@ -36,6 +37,7 @@ class AddLevelFragment : Fragment(), View.OnClickListener  {
         buttonRegisterLevel = view.findViewById<Button>(R.id.buttonRegisterLevel)
 
         editTextInfoLevelFragment = view.findViewById<TextInputEditText>(R.id.editTextInfoLevelFragment)
+        editTextNameLevelFragment = view.findViewById<TextInputEditText>(R.id.editTextNameLevelFragment)
     }
 
     private fun initListeners(view: View) {
@@ -56,6 +58,7 @@ class AddLevelFragment : Fragment(), View.OnClickListener  {
 
     private fun salvarLevel(view: View) {
         val level = Level(
+            nameLevel = editTextNameLevelFragment.text.toString(),
             infoLevel = editTextInfoLevelFragment.text.toString()
         )
 

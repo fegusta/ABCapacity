@@ -29,7 +29,6 @@ class AddQuestFragment : Fragment(), View.OnClickListener {
     private lateinit var editTextQuestionFragment: TextInputEditText
     private lateinit var editTextAlternativaAFragment: TextInputEditText
     private lateinit var editTextAlternativaBFragment: TextInputEditText
-    private lateinit var editTextAnswerFragment: TextInputEditText
 
     private lateinit var tilQuestionFragment: TextInputLayout
     private lateinit var tilalternativaAFragment: TextInputLayout
@@ -37,6 +36,8 @@ class AddQuestFragment : Fragment(), View.OnClickListener {
     private lateinit var tilAnswerFragment: TextInputLayout
 
     private lateinit var spinnerAddQuestFragment: Spinner
+    private lateinit var spinnerTypeOfQuestFragment: Spinner
+    private lateinit var spinnerAnswerFragment: Spinner
 
     private lateinit var inputValidation: InputValidation
     private lateinit var questRepository: QuestRepository
@@ -60,14 +61,14 @@ class AddQuestFragment : Fragment(), View.OnClickListener {
         editTextQuestionFragment = view.findViewById<TextInputEditText>(R.id.editTextQuestionFragment)
         editTextAlternativaAFragment = view.findViewById<TextInputEditText>(R.id.editTextAlternativaAFragment)
         editTextAlternativaBFragment = view.findViewById<TextInputEditText>(R.id.editTextAlternativaBFragment)
-        editTextAnswerFragment = view.findViewById<TextInputEditText>(R.id.editTextAnswerFragment)
 
         tilQuestionFragment = view.findViewById<TextInputLayout>(R.id.tilQuestionFragment)
         tilalternativaAFragment = view.findViewById<TextInputLayout>(R.id.tilalternativaAFragment)
         tilalternativaBFragment = view.findViewById<TextInputLayout>(R.id.tilalternativaBFragment)
-        tilAnswerFragment = view.findViewById<TextInputLayout>(R.id.tilAnswerFragment)
 
         spinnerAddQuestFragment = view.findViewById<Spinner>(R.id.spinnerAddQuestFragment)
+        spinnerTypeOfQuestFragment = view.findViewById<Spinner>(R.id.spinnerTypeOfQuestFragment)
+        spinnerAnswerFragment = view.findViewById<Spinner>(R.id.spinnerAnswerFragment)
     }
 
     private fun initListeners(view: View) {
@@ -88,6 +89,13 @@ class AddQuestFragment : Fragment(), View.OnClickListener {
         }
         val adapter = ArrayAdapter(view.context,android.R.layout.simple_spinner_dropdown_item,levelsId)
         spinnerAddQuestFragment.adapter = adapter
+
+        val adapterAnswer =  ArrayAdapter.createFromResource(view.context,R.array.list_answer,android.R.layout.simple_spinner_dropdown_item)
+        spinnerAnswerFragment.adapter = adapterAnswer
+
+
+        val adapterTypeOfQuest = ArrayAdapter.createFromResource(view.context,R.array.list_type_of_quest,android.R.layout.simple_spinner_dropdown_item)
+        spinnerTypeOfQuestFragment.adapter = adapterTypeOfQuest
     }
 
     override fun onClick(view: View) {
@@ -100,16 +108,13 @@ class AddQuestFragment : Fragment(), View.OnClickListener {
     }
 
     private fun postDataToSQLite(view: View) {
-        if(!inputValidation!!.isInputEditTextEmail(editTextQuestionFragment,tilQuestionFragment,"preencha o campo questão")){
+        if(!inputValidation!!.isInputEditTextFilled(editTextQuestionFragment,tilQuestionFragment,"preencha o campo questão")){
             return
         }
-        if(!inputValidation!!.isInputEditTextEmail(editTextAlternativaAFragment,tilalternativaAFragment,"preencha o campo alternativa A")){
+        if(!inputValidation!!.isInputEditTextFilled(editTextAlternativaAFragment,tilalternativaAFragment,"preencha o campo alternativa A")){
             return
         }
-        if(!inputValidation!!.isInputEditTextEmail(editTextAlternativaBFragment,tilalternativaBFragment,"preencha o campo alternativa B")){
-            return
-        }
-        if(!inputValidation!!.isInputEditTextEmail(editTextAnswerFragment,tilAnswerFragment,"preencha o campo resposta")){
+        if(!inputValidation!!.isInputEditTextFilled(editTextAlternativaBFragment,tilalternativaBFragment,"preencha o campo alternativa B")){
             return
         }
         salvarQuest(view)
@@ -122,7 +127,8 @@ class AddQuestFragment : Fragment(), View.OnClickListener {
             question = editTextQuestionFragment.text.toString(),
             alternativaA = editTextAlternativaAFragment.text.toString(),
             alternativaB = editTextAlternativaBFragment.text.toString(),
-            answer = editTextAnswerFragment.text.toString()
+            answer = spinnerAnswerFragment.selectedItem.toString(),
+            typeOfQuest = spinnerTypeOfQuestFragment.selectedItem.toString()
         )
 
         val id = questRepository.save(quest)
@@ -148,7 +154,6 @@ class AddQuestFragment : Fragment(), View.OnClickListener {
         editTextQuestionFragment.setText("")
         editTextAlternativaAFragment.setText("")
         editTextAlternativaBFragment.setText("")
-        editTextAnswerFragment.setText("")
     }
 
 }

@@ -28,7 +28,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
 
     companion object {
         private const val DATABASE_NAME = "abcapacity.db"
-        private const val DATABASE_VERSION = 3
+        private const val DATABASE_VERSION = 4
 
         private const val  CREATE_TABLE_QUEST = "CREATE TABLE ${DatabaseDefinitions.Quest.TABLE_NAME} (" +
                 "${DatabaseDefinitions.Quest.Columns.ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -41,7 +41,7 @@ class DatabaseHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME,
 
         private const val  CREATE_TABLE_LEVEL = "CREATE TABLE ${DatabaseDefinitions.Level.TABLE_NAME} (" +
                 "${DatabaseDefinitions.Level.Columns.ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "${DatabaseDefinitions.Level.Columns.NAME_LEVEL} TEXT " +
+                "${DatabaseDefinitions.Level.Columns.NAME_LEVEL} TEXT, " +
                 "${DatabaseDefinitions.Level.Columns.INFO_LEVEL} TEXT);"
 
         private const val  CREATE_TABLE_USER = "CREATE TABLE ${DatabaseDefinitions.User.TABLE_NAME} (" +
